@@ -8,10 +8,15 @@ It looks like:
 
 {
   "apiKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+
   "authDomain": "xxxx-xxxx-xxxx.firebaseapp.com",
+
   "databaseURL": "https://xxxx-xxxx-xxxx.firebaseio.com",
+
   "projectId": "xxxx-xxxx-xxxx",
+
   "storageBucket": "",
+
   "messagingSenderId": "0000000000000"
 }
 
