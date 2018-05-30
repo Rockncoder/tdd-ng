@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ContactService} from '../contact.service';
 import {Contact} from '../contact';
-import {AngularFireDatabase} from 'angularfire2/database';
 import {Observable} from 'rxjs/Observable';
 import {MatSnackBar} from '@angular/material';
 
@@ -17,7 +16,6 @@ export class ContactsListComponent implements OnInit {
   contacts: Observable<Contact[]>;
 
   constructor(private contactService: ContactService,
-              private af: AngularFireDatabase,
               public snackBar: MatSnackBar) {
   }
 
