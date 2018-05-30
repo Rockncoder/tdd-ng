@@ -1,0 +1,24 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" class="app-sidenav">
+    <mat-card>
+      <a mat-button routerLink="/about" routerLinkActive="bob">About</a>
+    </mat-card>
+    <mat-card>
+      <a mat-button routerLink="/contacts" routerLinkActive="active">Contacts</a>
+    </mat-card>
+    <mat-card>
+      <a mat-button routerLink="/new" routerLinkActive="active">New</a>
+    </mat-card>
+  </mat-sidenav>
+  <mat-sidenav-content class="app-content">
+    <mat-toolbar color="primary">
+      <button mat-button class="app-icon-button" (click)="sidenav.toggle()">
+        <i class="material-icons app-toolbar-menu">menu</i>
+      </button>
+      <h1>
+        {{title}}
+      </h1>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
