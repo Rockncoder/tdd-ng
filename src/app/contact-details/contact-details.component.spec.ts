@@ -7,35 +7,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ContactDetailsComponent} from './contact-details.component';
 import {ContactService} from '../contact.service';
-import {Observable} from 'rxjs/Observable';
-import {Contact} from '../contact';
 import {AngularFireDatabase} from 'angularfire2/database';
-
-const contactList = [{
-  firstName: 'Able',
-  lastName: 'Baker',
-  phone: '555-222-3333',
-  email: 'abaker@gmail.com',
-  id: '001'
-}];
-
-class AngularFireDatabaseStub {
-  public list(): any {
-    return {
-      valueChanges: () => Observable.of(contactList)
-    };
-  }
-}
-
-class MockContactService {
-  public readContact(id: String): Observable<Contact> {
-    return Observable.of(contactList[0]);
-  }
-
-  public readContacts(): Observable<Contact[]> {
-    return Observable.of(contactList);
-  }
-}
+import {MockContactService, AngularFireDatabaseStub} from '../mock-contact.service';
 
 describe('ContactDetailsComponent', () => {
   let component: ContactDetailsComponent;
@@ -59,7 +32,7 @@ describe('ContactDetailsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create ContactDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 });

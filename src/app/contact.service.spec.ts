@@ -1,23 +1,7 @@
 import {TestBed, inject} from '@angular/core/testing';
 import {ContactService} from './contact.service';
-import {Observable} from 'rxjs/Observable';
 import {AngularFireDatabase} from 'angularfire2/database';
-
-class AngularFireDatabaseStub {
-  public list(): any {
-    return {
-      valueChanges: () => Observable.of([
-        {
-          firstName: 'Able',
-          lastName: 'Baker',
-          phone: '555-222-3333',
-          email: 'abaker@gmail.com',
-          id: '001'
-        }
-      ])
-    };
-  }
-}
+import {AngularFireDatabaseStub} from './mock-contact.service';
 
 describe('ContactService', () => {
   beforeEach(() => {
@@ -29,7 +13,7 @@ describe('ContactService', () => {
     });
   });
 
-  it('should be able to create the service', inject([ContactService], (service: ContactService) => {
+  it('should be able to create the ContactService', inject([ContactService], (service: ContactService) => {
     expect(service).toBeTruthy();
   }));
 });
