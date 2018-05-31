@@ -9,7 +9,6 @@ import {MockContactService, AngularFireDatabaseStub} from '../mock-contact.servi
 
 describe('ContactsListComponent', () => {
   let component: ContactsListComponent;
-  // let contactService: ContactService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,7 +20,6 @@ describe('ContactsListComponent', () => {
       ]
     });
 
-    // contactService = TestBed.get(ContactService);
     component = TestBed.createComponent(ContactsListComponent).componentInstance;
   });
 

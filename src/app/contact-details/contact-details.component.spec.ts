@@ -9,6 +9,17 @@ import {ContactDetailsComponent} from './contact-details.component';
 import {ContactService} from '../contact.service';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {MockContactService, AngularFireDatabaseStub} from '../mock-contact.service';
+// import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+
+/*
+ An example an angular material component mock
+*/
+//
+// @Component({
+//   selector: 'mat-icon',
+//   template: '<div></div>'
+// })
+// class MockIcon {}
 
 describe('ContactDetailsComponent', () => {
   let component: ContactDetailsComponent;
@@ -17,11 +28,12 @@ describe('ContactDetailsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ContactDetailsComponent],
-      imports: [FormsModule, RouterTestingModule, NoopAnimationsModule, MatInputModule, MatIconModule, MatSnackBarModule],
+      imports: [FormsModule, RouterTestingModule, NoopAnimationsModule, MatIconModule, MatInputModule, MatSnackBarModule],
       providers: [
         {provide: ContactService, useClass: MockContactService},
         {provide: AngularFireDatabase, useClass: AngularFireDatabaseStub}
-      ]
+      ],
+      // schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
   }));
