@@ -3,45 +3,54 @@ import {RouterTestingModule} from '@angular/router/testing';
 
 import {ContactsListComponent} from './contacts-list.component';
 import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ContactService} from '../contact.service';
 import {of} from 'rxjs/observable/of';
+import {Observable} from 'rxjs/Observable';
+import {Contact} from '../contact';
+import {AngularFireDatabase} from 'angularfire2/database';
 
+const contactList = [{
+  firstName: 'Able',
+  lastName: 'Baker',
+  phone: '555-222-3333',
+  email: 'abaker@gmail.com',
+  id: '001'
+}];
+
+class AngularFireDatabaseStub {
+  public list(): any {
+    return {
+      valueChanges: () => Observable.of(contactList)
+    };
+  }
+}
+
+class MockContactService {
+  public readContacts(): Observable<Contact[]> {
+    return Observable.of(contactList);
+  }
+}
 
 describe('ContactsListComponent', () => {
   let component: ContactsListComponent;
-  let fixture: ComponentFixture<ContactsListComponent>;
-  const contactList = [
-    {
-      firstName: 'Able',
-      lastName: 'Baker',
-      phone: '555-222-3333',
-      email: 'abaker@gmail.com',
-      id: '001'
-    }
-    ];
-
-  beforeEach(async(() => {
-    const contactService = jasmine.createSpyObj('ContactService', ['readContacts']);
-    const getQuoteSpy = contactService.readContacts.and.returnValue( of(contactList) );
-
-
-    TestBed.configureTestingModule({
-      declarations: [ContactsListComponent],
-      imports: [RouterTestingModule, MatCardModule],
-      providers: [
-        {provide: ContactService, useValue: contactService}
-      ]
-    })
-      .compileComponents();
-  }));
+  // let fixture: ComponentFixture<ContactsListComponent>;
+  let contactService: ContactService;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContactsListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      declarations: [ContactsListComponent],
+      imports: [RouterTestingModule, MatCardModule, MatSnackBarModule],
+      providers: [
+        {provide: ContactService, useClass: MockContactService},
+        {provide: AngularFireDatabase, useClass: AngularFireDatabaseStub}
+      ]
+    });
+    contactService = TestBed.get(ContactService);
+    component = TestBed.createComponent(ContactsListComponent).componentInstance;
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 });
